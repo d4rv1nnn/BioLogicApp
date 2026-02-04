@@ -108,7 +108,7 @@ public partial class MainPage : ContentPage
         }
         else
         {
-            await Navigation.PushAsync(new ResultPage(problems));
+            await Navigation.PushAsync(new SummaryPage(problems));
         }
     }
 
