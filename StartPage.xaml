@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BioLogicNative.StartPage"
+             BackgroundColor="#121212"
+             Title="Start">
+
+    <Grid>
+        <VerticalStackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+            
+            <Label Text="Health PWA" 
+                   FontSize="40" 
+                   FontAttributes="Bold" 
+                   TextColor="#4CC2FF"
+                   HorizontalOptions="Center" />
+            
+            <BoxView HeightRequest="2" WidthRequest="150" Color="#4CC2FF" HorizontalOptions="Center" Margin="0,-10,0,0"/>
+
+            <Label Text="Твоя персональная биохакинг-стратегия" 
+                   TextColor="Gray" 
+                   FontAttributes="Italic"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Начать диагностику" 
+                    Clicked="OnStartClicked"
+                    BackgroundColor="#4CC2FF" 
+                    TextColor="Black" 
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="250"
+                    Margin="0,40,0,0"
+                    FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

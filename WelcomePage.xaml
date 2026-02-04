@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiProject.WelcomePage"
+             BackgroundColor="#121212"
+             Title="Welcome">
+
+    <StackLayout VerticalOptions="Center" Spacing="20" Padding="30">
+        
+        <!-- Logo / Title -->
+        <Label Text="BIOHACKER" 
+               TextColor="#4CAF50" 
+               FontSize="40" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" 
+               Margin="0,0,0,30"
+               CharacterSpacing="2"/>
+
+        <!-- Name Input -->
+        <Border Stroke="#333333" BackgroundColor="#1E1E1E" StrokeShape="RoundRectangle 10" Padding="10,0">
+            <Entry x:Name="NameEntry"
+                   Placeholder="Ваше Имя" 
+                   PlaceholderColor="#666666" 
+                   TextColor="White"/>
+        </Border>
+
+        <!-- Age Input -->
+        <Border Stroke="#333333" BackgroundColor="#1E1E1E" StrokeShape="RoundRectangle 10" Padding="10,0">
+            <Entry x:Name="AgeEntry"
+                   Placeholder="Возраст (лет)" 
+                   PlaceholderColor="#666666" 
+                   Keyboard="Numeric"
+                   TextColor="White"/>
+        </Border>
+
+        <!-- Weight Input -->
+        <Border Stroke="#333333" BackgroundColor="#1E1E1E" StrokeShape="RoundRectangle 10" Padding="10,0">
+            <Entry x:Name="WeightEntry"
+                   Placeholder="Вес (кг)" 
+                   PlaceholderColor="#666666" 
+                   Keyboard="Numeric"
+                   TextColor="White"/>
+        </Border>
+
+        <!-- Next Button -->
+        <Button Text="Далее" 
+                BackgroundColor="#6200EE" 
+                TextColor="White" 
+                CornerRadius="25" 
+                HeightRequest="50" 
+                FontAttributes="Bold"
+                Margin="0,20,0,0"
+                Clicked="OnNextClicked"/>
+
+    </StackLayout>
+</ContentPage>

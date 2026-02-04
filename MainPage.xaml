@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:BioLogicNative.Models"
+             x:Class="MauiProject.MainPage"
+             BackgroundColor="#121212">
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Margin="0,0,0,20">
+            <VerticalStackLayout Grid.Column="0">
+                <Label Text="Добро пожаловать," TextColor="Gray" FontSize="14"/>
+                <Label x:Name="UserNameLabel" Text="Биохакер" TextColor="White" FontSize="24" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+            
+            <Button Grid.Column="1" 
+                        Text="⚙️"
+                        Clicked="OnProfileClicked"
+                        HeightRequest="40" 
+                        WidthRequest="40"
+                        CornerRadius="20"
+                        BackgroundColor="#333333"
+                        Padding="0"/>
+        </Grid>
+        
+        <CollectionView Grid.Row="1" x:Name="HormonesList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Hormone">
+                    <Border Stroke="Gray" StrokeThickness="1" BackgroundColor="#1E1E1E" Padding="15" Margin="0,0,0,10">
+                        <Grid ColumnDefinitions="*, 100">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding Name}" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Reference.Unit, StringFormat='Ед: {0}'}" TextColor="Gray" FontSize="12"/>
+                                <Label TextColor="#80CBC4" FontSize="12">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Норма: "/>
+                                            <Span Text="{Binding Reference.Min}"/>
+                                            <Span Text=" - "/>
+                                            <Span Text="{Binding Reference.Max}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </VerticalStackLayout>
+                            
+                            <Entry Grid.Column="1" 
+                                   Text="{Binding UserInputValue}"
+                                   Placeholder="0.0"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="#333333"
+                                   TextColor="White"
+                                   HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="2" Text="Рассчитать результаты" Clicked="OnAnalyzeClicked" 
+                BackgroundColor="#4CAF50" TextColor="White" HeightRequest="50" CornerRadius="10" Margin="0,10,0,0"/>
+    </Grid>
+</ContentPage>
