@@ -55,7 +55,7 @@ public partial class MainPage : ContentPage
                 if (activity == "High")
                 {
                     hormone.Reference.Min += 5.0; // Было 20, станет 25
-                    hormone.Description += " (Норма повышена из-за спорта)";
+                    hormone.Description += " (Целевой уровень скорректирован: атлетам требуется более высокий андрогенный статус для компенсации тренировочного стресса)";
                 }
                 
                 // С возрастом планка чуть падает (реализм), но мы биохакеры, держим её!
@@ -73,7 +73,7 @@ public partial class MainPage : ContentPage
                 if (hasStress)
                 {
                     hormone.Reference.Max += 50.0; // Даем "скидку" на стресс
-                    hormone.Description += " (Учет фактора стресса)";
+                    hormone.Description += " (Допуск по верхней границе расширен с учетом выявленного фактора хронического стресса)";
                 }
             }
         }
@@ -112,7 +112,6 @@ public partial class MainPage : ContentPage
         }
     }
 
-    // "Мозг" приложения
     private List<Hormone> CheckSmartRules(List<Hormone> source)
     {
         var list = new List<Hormone>();
@@ -138,11 +137,11 @@ public partial class MainPage : ContentPage
             list.Add(new Hormone
             {
                 Name = "⚠️ КРИТИЧЕСКАЯ АРОМАТИЗАЦИЯ",
-                Description = "Ваш Тестостерон конвертируется в Эстрадиол. Опасно!",
+                Description = "Обнаружена патологическая конверсия андрогенов в эстрогены. Избыток Эстрадиола блокирует жиросжигание и инициирует задержку жидкости.",
                 Solutions = new Solutions
                 {
                     Physics = new() { "Срочно снизить % жира (жир ароматизирует)", "Убрать любой алкоголь" },
-                    Supplements = new() { "Ингибиторы Ароматазы (Анастрозол) - к врачу!", "Цинк 50мг", "DIM 200мг" },
+                    Supplements = new() { "Цинк (Пиколинат) 50 мг", "DIM (Дииндолилметан) 200 мг", "Экстракт брокколи (Сульфорафан)" },
                     Psychology = new() { "Контроль истеричности" }
                 }
             });
@@ -154,11 +153,11 @@ public partial class MainPage : ContentPage
             list.Add(new Hormone
             {
                 Name = "⚠️ ПРОЛАКТИНОВАЯ ЯМА",
-                Description = "Высокий Пролактин подавляет выработку Тестостерона.",
+                Description = "Гиперпролактинемия подавляет ось ГГЯ, блокируя секрецию собственного тестостерона. Требуется коррекция дофаминового статуса.",
                 Solutions = new Solutions
                 {
                     Physics = new() { "Исключить пиво", "Секс вместо мастурбации", "Сон в темноте" },
-                    Supplements = new() { "Каберголин (Достинекс) - строго с врачом", "Витекс", "Витамин B6 (P-5-P)" },
+                    Supplements = new() { "Витамин B6 (P-5-P) 100 мг", "Витекс (Agnes Castus) 400 мг", "Магний (Цитрат) 400 мг" },
                     Psychology = new() { "Убрать позицию жертвы" }
                 }
             });
@@ -170,11 +169,11 @@ public partial class MainPage : ContentPage
             list.Add(new Hormone
             {
                 Name = "⚠️ СВЯЗАННЫЙ ТЕСТОСТЕРОН",
-                Description = "Общий тест высокий, но ГСПГ украл его. Свободный тест низкий.",
+                Description = "Дефицит свободного тестостерона из-за высокой активности ГСПГ. Гормон есть, но он биологически неактивен.",
                 Solutions = new Solutions
                 {
                     Physics = new() { "Повысить инсулин (больше углей)", "Больше белка" },
-                    Supplements = new() { "Бор (Boron) 10мг", "Корень крапивы (Nettle Root)", "Магний" },
+                    Supplements = new() { "Бор (Boron Glycinate) 10 мг", "Корень крапивы 500 мг", "Витамин D3 5000 ME + K2" },
                     Psychology = new() { "Расслабление" }
                 }
             });
