@@ -1,36 +1,26 @@
 using BioLogicNative.Models;
-using System.Text.Json;
-using System.Linq;
 using System.Text;
 
 namespace BioLogicNative;
 
-[QueryProperty(nameof(Results), "Results")]
 public partial class SummaryPage : ContentPage
 {
     private List<Hormone> _results;
-    public List<Hormone> Results
-    {
-        get => _results;
-        set
-        {
-            _results = value;
-            DetectedList.ItemsSource = _results;
-            GenerateStrategy();
-        }
-    }
 
-    public SummaryPage()
+    public SummaryPage(List<Hormone> problems)
     {
         InitializeComponent();
+        _results = problems;
+        DetectedList.ItemsSource = _results;
+        GenerateStrategy();
     }
 
     private void GenerateStrategy()
     {
-        if (Results == null || !Results.Any()) return;
+        if (_results == null || !_results.Any()) return;
         
         // Получаем список имен проблемных гормонов для быстрого поиска
-        var defects = Results.Select(h => h.Name).ToHashSet();
+        var defects = _results.Select(h => h.Name).ToHashSet();
         var strategyBuilder = new StringBuilder();
         bool hasCritical = false;
 
@@ -92,7 +82,7 @@ public partial class SummaryPage : ContentPage
         if (string.IsNullOrWhiteSpace(strategyBuilder.ToString()))
         {
             // Просто берем топ-1 проблему
-            var topProblem = Results.First();
+            var topProblem = _results.First();
             strategyBuilder.AppendLine($"Ваш основной приоритет — {topProblem.Name}. {topProblem.Description}");
             strategyBuilder.AppendLine("Начните с рекомендаций именно для этого гормона.");
         }
@@ -115,10 +105,6 @@ public partial class SummaryPage : ContentPage
 
     private async void OnOpenProtocolClicked(object sender, EventArgs e)
     {
-        var navigationParameter = new Dictionary<string, object>
-        {
-            { "Results", _results }
-        };
-        await Shell.Current.GoToAsync(nameof(ResultPage), navigationParameter);
+        await Navigation.PushAsync(new ResultPage(_results));
     }
 }
